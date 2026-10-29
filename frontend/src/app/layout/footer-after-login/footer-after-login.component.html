@@ -1,0 +1,93 @@
+<footer class="footer">
+  <div class="footer-content">
+    <!-- About -->
+    <section>
+      <div class="logo">
+        <img src="/Image-2.jpeg" alt="Coding with Murat Logo" />
+        <h3>🎓 Coding with Murat</h3>
+      </div>
+
+      <p>
+        Empowering education through technology. Streamlining academic
+        management with modern solutions.
+      </p>
+
+      <div class="badges">
+        <span>✨ Excellence</span>
+        <span>🚀 Innovation</span>
+        <span>💡 Quality</span>
+      </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section>
+      <h3>Quick Links</h3>
+
+      <ul>
+        @for (link of quickLinks; track link.path) {
+          <li>
+            <a [routerLink]="link.path">{{ link.name }}</a>
+          </li>
+        }
+      </ul>
+    </section>
+
+    <!-- Contact -->
+    <section>
+      <h3>Get in Touch</h3>
+
+      @for (item of contactInfo; track item.type) {
+        <div class="contact-item">
+          <span>{{ item.icon }}</span>
+
+          <div>
+            @if (item.type === "address") {
+              <strong>Address:</strong><br />
+              {{ item.content }}<br />
+              {{ item.extra }}<br />
+              {{ item.third }}<br />
+              {{ item.fourth }}
+            } @else if (item.url) {
+              <a [href]="item.url">{{ item.content }}</a>
+            } @else {
+              {{ item.content }}
+            }
+          </div>
+        </div>
+      }
+    </section>
+  </div>
+
+  <!-- Social Links -->
+  <div class="social">
+    @for (social of socialLinks; track social.name) {
+      <a [href]="social.url" target="_blank" rel="noopener noreferrer">
+        {{ social.icon }} {{ social.name }}
+      </a>
+    }
+  </div>
+
+  <!-- Copyright -->
+  <div class="copyright">
+    <p>© {{ year }} Coding with Murat. All rights reserved.</p>
+
+    <p>Developed with ❤️ by <strong>Ram Murat Yadav</strong></p>
+
+    <div class="legal-links">
+      <a routerLink="/privacy">Privacy</a>
+      <a routerLink="/terms">Terms</a>
+      <a routerLink="/sitemap">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp -->
+<a
+  class="whatsapp"
+  href="https://wa.me/918800519736"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Chat on WhatsApp"
+>
+  💬
+</a>
