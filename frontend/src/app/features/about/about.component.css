@@ -1,0 +1,315 @@
+/* Main */
+.about-container {
+  color: #1e293b;
+  overflow: hidden;
+}
+
+.section {
+  padding: 65px 8%;
+}
+
+.light-bg {
+  background: #f8fafc;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading h2,
+.card h2 {
+  color: #0e7490;
+}
+
+.section-heading p,
+.card p {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* Hero */
+.hero,
+.stats,
+.cta {
+  background: linear-gradient(135deg, #0f172a, #164e63);
+  color: white;
+  text-align: center;
+}
+
+.hero {
+  padding: 75px 20px;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: auto;
+}
+
+.profile-image {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #38bdf8;
+}
+
+.hero h1 {
+  font-size: 38px;
+  margin: 20px 0;
+}
+
+.hero h1 span {
+  color: #38bdf8;
+}
+
+.hero-content > p,
+.cta p {
+  color: #cbd5e1;
+}
+
+.hero-stats,
+.social-links,
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.hero-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-stats h3,
+.stats h2 {
+  color: #38bdf8;
+  font-size: 28px;
+  margin: 0;
+}
+
+/* Founder */
+.founder {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.founder > img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.founder h4 {
+  color: #0891b2;
+}
+
+.social-links a {
+  color: #0891b2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.social-links a:hover {
+  color: #0369a1;
+}
+
+/* Common Grid and Cards */
+.grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.card {
+  padding: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px #0000000d;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px #00000015;
+}
+
+.card h3 {
+  color: #0e7490;
+}
+
+.icon {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.card ul {
+  padding-left: 20px;
+  color: #64748b;
+  line-height: 2;
+}
+
+/* Statistics */
+.stats {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.stats .grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.stats p {
+  color: #fff;
+}
+
+/* Timeline */
+.timeline {
+  max-width: 850px;
+  margin: auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: #0891b2;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  width: 50%;
+  padding: 12px 30px 12px 0;
+}
+
+.timeline-item.right {
+  margin-left: 50%;
+  padding: 12px 0 12px 30px;
+}
+
+.timeline-item h3 {
+  color: #0891b2;
+}
+
+/* Team */
+.team-card {
+  text-align: center;
+}
+
+.team-card > img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #0891b2;
+  margin-bottom: 15px;
+}
+
+.team-card h4 {
+  color: #0891b2;
+}
+
+.team-card .social-links {
+  gap: 15px;
+}
+
+/* CTA */
+.cta {
+  padding: 65px 20px;
+}
+
+.cta h2 {
+  color: white;
+  font-size: 32px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.primary {
+  background: #0891b2;
+  color: white;
+}
+
+.secondary {
+  border: 1px solid #38bdf8;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .founder {
+    grid-template-columns: 220px 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 40px 18px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .grid,
+  .stats .grid,
+  .founder {
+    grid-template-columns: 1fr;
+  }
+
+  .founder {
+    text-align: center;
+  }
+
+  .founder > img {
+    width: 200px;
+    height: 230px;
+    margin: auto;
+  }
+
+  .timeline::before {
+    left: 0;
+  }
+
+  .timeline-item,
+  .timeline-item.right {
+    width: 100%;
+    margin-left: 0;
+    padding: 12px 0 12px 25px;
+  }
+
+  .cta h2 {
+    font-size: 25px;
+  }
+}

@@ -1,0 +1,56 @@
+<div class="register">
+  <h2>Create Account</h2>
+  <p class="subtitle">Register to get started</p>
+
+  <app-alert [message]="message" [type]="alertType" />
+
+  <form [formGroup]="form" (ngSubmit)="register()">
+    <label for="name">Full Name</label>
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      placeholder="Enter your name"
+      autocomplete="name"
+    />
+
+    @if (form.controls.name.touched && form.controls.name.invalid) {
+      <small>Name is required (maximum 100 characters).</small>
+    }
+
+    <label for="email">Email</label>
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+    />
+
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+      <small>Please enter a valid email address.</small>
+    }
+
+    <label for="password">Password</label>
+    <input
+      id="password"
+      type="password"
+      formControlName="password"
+      placeholder="Minimum 8 characters"
+      autocomplete="new-password"
+    />
+
+    @if (form.controls.password.touched && form.controls.password.invalid) {
+      <small>Password must be at least 8 characters.</small>
+    }
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? "Creating account..." : "Register" }}
+    </button>
+  </form>
+
+  <div class="footer">
+    Already have an account?
+    <a routerLink="/login">Login</a>
+  </div>
+</div>

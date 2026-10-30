@@ -1,0 +1,8 @@
+@if (message) {
+  <div class="alert" [class]="type" role="alert">
+    <span>{{ message }}</span>
+    <button type="button" (click)="close()" aria-label="Close alert">
+      &times;
+    </button>
+  </div>
+}

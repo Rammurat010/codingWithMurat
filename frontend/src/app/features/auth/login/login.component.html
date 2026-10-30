@@ -1,0 +1,43 @@
+<div class="login">
+  <h2>Welcome Back</h2>
+  <p>Login to your account</p>
+
+  <app-alert [message]="message" [type]="alertType" />
+
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <label for="email">Email</label>
+    <input
+      id="email"
+      type="email"
+      formControlName="email"
+      placeholder="Enter your email"
+      autocomplete="email"
+    />
+
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+      <small>Please enter a valid email.</small>
+    }
+
+    <label for="password">Password</label>
+    <input
+      id="password"
+      type="password"
+      formControlName="password"
+      placeholder="Enter your password"
+      autocomplete="current-password"
+    />
+
+    @if (form.controls.password.touched && form.controls.password.invalid) {
+      <small>Password is required.</small>
+    }
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? "Logging in..." : "Login" }}
+    </button>
+  </form>
+
+  <div class="footer">
+    Don't have an account?
+    <a routerLink="/register">Register</a>
+  </div>
+</div>
