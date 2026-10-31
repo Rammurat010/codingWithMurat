@@ -1,1 +1,185 @@
-<p>contact works!</p>
+<div class="contact">
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Get in Touch</h1>
+    <p>Have questions or want to learn more? We'd love to hear from you!</p>
+    <p>📞 +91 88005 19736 | ✉️ rammuratyadav224&#64;gmail.com</p>
+  </section>
+
+  <!-- Contact Form and Information -->
+  <section class="content">
+    <div class="card">
+      <h2>Send us a Message</h2>
+      <p>We'll get back to you within 24 hours.</p>
+
+      @if (error) {
+        <p class="error">⚠️ {{ error }}</p>
+      }
+
+      <form (ngSubmit)="handleSubmit()">
+        <label>Your Name *</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your name"
+          [(ngModel)]="formData.name"
+          [disabled]="loading"
+          required
+        />
+
+        <label>Email Address *</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          [(ngModel)]="formData.email"
+          [disabled]="loading"
+          required
+        />
+
+        <label>Phone Number *</label>
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Enter your phone number"
+          [(ngModel)]="formData.phone"
+          [disabled]="loading"
+          required
+        />
+
+        <label>Subject *</label>
+        <input
+          type="text"
+          name="subject"
+          placeholder="Enter subject"
+          [(ngModel)]="formData.subject"
+          [disabled]="loading"
+          required
+        />
+
+        <label>Message *</label>
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Write your message"
+          [(ngModel)]="formData.message"
+          [disabled]="loading"
+          required
+        ></textarea>
+
+        <button type="submit" [disabled]="loading">
+          {{ loading ? "Sending..." : "Send Message" }}
+        </button>
+      </form>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="card">
+      <h2>Contact Information</h2>
+      <p>Reach out to us through any of these channels.</p>
+
+      @for (item of contactInfo; track item.title) {
+        <div class="info">
+          <span>{{ item.icon }}</span>
+
+          <div>
+            <h3>{{ item.title }}</h3>
+
+            @for (detail of item.details; track detail) {
+              <p>{{ detail }}</p>
+            }
+          </div>
+        </div>
+      }
+
+      <h3>Connect With Us</h3>
+
+      <div class="social">
+        @for (social of socialLinks; track social.name) {
+          <a [href]="social.url" target="_blank" rel="noopener noreferrer">
+            {{ social.icon }} {{ social.name }}
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Google Map -->
+  <section class="map">
+    <h2>📍 Find Us Here</h2>
+
+    <p>
+      Gram - Barawa Chamainiya, PO - Pakdi Bishnupur, Dist - Maharajganj, Pin -
+      273151
+    </p>
+
+    <iframe
+      src="https://www.google.com/maps?q=27.123456,83.567890&output=embed"
+      width="100%"
+      height="350"
+      style="border: 0"
+      loading="lazy"
+      title="Coding with Murat Location"
+    ></iframe>
+
+    <a
+      href="https://maps.google.com/maps?q=27.123456,83.567890"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Open in Google Maps
+    </a>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <p>Quick answers to common questions.</p>
+
+    @for (item of faqs; track item.question) {
+      <div class="faq-item">
+        <h3>❓ {{ item.question }}</h3>
+        <p>{{ item.answer }}</p>
+      </div>
+    }
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Ready to Start Learning?</h2>
+
+    <p>Join thousands of students learning to code with us.</p>
+
+    <a routerLink="/register">Get Started Now</a>
+
+    <a routerLink="/courses">View Courses</a>
+  </section>
+
+  <!-- Success Popup -->
+  @if (showAlert) {
+    <div class="overlay" (click)="closeAlert()">
+      <div class="popup" (click)="$event.stopPropagation()">
+        <button class="close" (click)="closeAlert()">×</button>
+
+        <h2>🎉 Message Sent Successfully!</h2>
+
+        <p>
+          Thank you <strong>{{ alertData.name }}</strong
+          >! Your message has been received.
+        </p>
+
+        <hr />
+
+        <p><strong>Name:</strong> {{ alertData.name }}</p>
+        <p><strong>Email:</strong> {{ alertData.email }}</p>
+        <p><strong>Phone:</strong> {{ alertData.phone }}</p>
+        <p><strong>Subject:</strong> {{ alertData.subject }}</p>
+        <p><strong>Message:</strong> {{ alertData.message }}</p>
+
+        <p>We'll get back to you within 24 hours. 📧</p>
+
+        <button (click)="closeAlert()">Got it! 👍</button>
+      </div>
+    </div>
+  }
+</div>
