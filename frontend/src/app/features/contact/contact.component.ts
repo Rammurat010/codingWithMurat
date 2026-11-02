@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 
-import { ContactForm } from '../../models/contact-form.model';
+import { ContactService } from '../../core/services/contact.service';
+
+import {
+  ContactForm,
+  ContactInfo,
+  SocialLink,
+  FAQ,
+} from '../../models/contact-form.model';
 
 @Component({
   selector: 'app-contact',
@@ -14,6 +20,8 @@ import { ContactForm } from '../../models/contact-form.model';
   styleUrl: './contact.component.css',
 })
 export class ContactComponent {
+  private contactService = inject(ContactService);
+
   loading = false;
   showAlert = false;
   error = '';
@@ -21,10 +29,7 @@ export class ContactComponent {
   formData: ContactForm = this.emptyForm();
   alertData: ContactForm = this.emptyForm();
 
-  private apiUrl = 'http://localhost:5000/api/contact/submit';
-
-  constructor(private http: HttpClient) {}
-
+  // Empty form
   emptyForm(): ContactForm {
     return {
       name: '',
@@ -35,9 +40,8 @@ export class ContactComponent {
     };
   }
 
-  handleSubmit(): void {
-    this.error = '';
-
+  // Form validation
+  validateForm(): boolean {
     const { name, email, phone, subject, message } = this.formData;
 
     if (
@@ -48,36 +52,51 @@ export class ContactComponent {
       !message.trim()
     ) {
       this.error = 'Please fill in all fields';
-      return;
+      return false;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email.trim())) {
       this.error = 'Please enter a valid email address';
-      return;
+      return false;
     }
 
-    const phoneRegex = /^\d{10,}$/;
+    const phoneRegex = /^\d{10,15}$/;
 
     if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
       this.error = 'Please enter a valid phone number';
+      return false;
+    }
+
+    return true;
+  }
+
+  // Submit contact form
+  handleSubmit(): void {
+    this.error = '';
+
+    if (this.loading || !this.validateForm()) {
       return;
     }
 
     this.loading = true;
 
-    this.http.post<any>(this.apiUrl, this.formData).subscribe({
+    const data: ContactForm = {
+      ...this.formData,
+      name: this.formData.name.trim(),
+      email: this.formData.email.trim(),
+      phone: this.formData.phone.trim(),
+      subject: this.formData.subject.trim(),
+      message: this.formData.message.trim(),
+    };
+
+    this.contactService.submitContact(data).subscribe({
       next: (response) => {
         if (response.success) {
-          this.alertData = { ...this.formData };
+          this.alertData = { ...data };
           this.formData = this.emptyForm();
-
           this.showAlert = true;
-
-          setTimeout(() => {
-            this.closeAlert();
-          }, 8000);
         } else {
           this.error = response.message || 'Failed to send message';
         }
@@ -95,11 +114,13 @@ export class ContactComponent {
     });
   }
 
+  // Close success popup
   closeAlert(): void {
     this.showAlert = false;
   }
 
-  contactInfo = [
+  // Contact information
+  contactInfo: ContactInfo[] = [
     {
       icon: '📍',
       title: 'Our Address',
@@ -131,7 +152,8 @@ export class ContactComponent {
     },
   ];
 
-  socialLinks = [
+  // Social links
+  socialLinks: SocialLink[] = [
     {
       name: 'YouTube',
       icon: '▶️',
@@ -164,7 +186,8 @@ export class ContactComponent {
     },
   ];
 
-  faqs = [
+  // Frequently asked questions
+  faqs: FAQ[] = [
     {
       question: 'How do I register for a course?',
       answer: 'Click the Register button and follow the registration process.',

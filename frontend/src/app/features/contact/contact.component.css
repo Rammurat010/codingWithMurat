@@ -1,126 +1,91 @@
 .contact {
-  color: #333;
+  padding: 30px;
+  color: #222;
 }
 
 .hero,
 .cta {
-  background: #102a43;
-  color: white;
   text-align: center;
-  padding: 55px 20px;
-}
-
-.hero h1 {
-  font-size: 38px;
+  padding: 40px 20px;
+  background: #f1f5f9;
+  border-radius: 10px;
 }
 
 .content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px;
-  padding: 40px 7%;
+  margin: 30px 0;
 }
 
-.card {
+.card,
+.faq-item,
+.map {
   padding: 25px;
-  background: white;
+  border: 1px solid #ddd;
   border-radius: 10px;
-  box-shadow: 0 2px 12px #00000015;
+  margin-bottom: 20px;
 }
 
-.card label {
-  display: block;
-  margin: 15px 0 7px;
-  font-weight: 600;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.card input,
-.card textarea {
+input,
+textarea {
   width: 100%;
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
 }
 
-.card button,
-.popup button {
-  padding: 12px 20px;
-  background: #087e8b;
+button,
+.cta a {
+  padding: 12px 18px;
+  background: #087f8c;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 15px;
+  text-decoration: none;
+  margin: 5px;
 }
 
-.card button:disabled {
+button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-}
-
-.error {
-  color: #d62828;
-  background: #ffe5e5;
-  padding: 10px;
 }
 
 .info {
   display: flex;
   gap: 15px;
-  margin: 22px 0;
-}
-
-.info span {
-  font-size: 25px;
-}
-
-.info h3,
-.info p {
-  margin: 5px 0;
+  margin: 20px 0;
 }
 
 .social {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 15px;
 }
 
 .social a {
-  color: #087e8b;
+  color: #087f8c;
   text-decoration: none;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
 }
 
-.map,
-.faq {
-  padding: 40px 7%;
-  text-align: center;
+.error {
+  color: red;
 }
 
 .map iframe {
-  margin: 20px 0;
+  margin: 15px 0;
 }
 
-.map a,
-.cta a {
-  display: inline-block;
-  background: #087e8b;
-  color: white;
-  padding: 12px 20px;
-  margin: 8px;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.faq-item {
-  background: #f5f7fa;
-  padding: 15px;
-  margin: 12px 0;
-  text-align: left;
-  border-radius: 6px;
+.faq {
+  margin: 30px 0;
 }
 
 .overlay {
@@ -128,48 +93,35 @@
   inset: 0;
   background: #0009;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding: 15px;
   z-index: 1000;
 }
 
 .popup {
   background: white;
-  width: 100%;
-  max-width: 480px;
-  max-height: 85vh;
-  overflow-y: auto;
   padding: 25px;
   border-radius: 10px;
+  width: 100%;
+  max-width: 450px;
+  max-height: 85vh;
+  overflow-y: auto;
   position: relative;
-}
-
-.popup h2 {
-  text-align: center;
-}
-
-.popup p {
-  overflow-wrap: anywhere;
 }
 
 .close {
   position: absolute;
-  right: 15px;
   top: 5px;
-  border: none;
-  background: transparent;
-  font-size: 25px;
-  cursor: pointer;
+  right: 5px;
 }
 
 @media (max-width: 768px) {
   .content {
     grid-template-columns: 1fr;
-    padding: 20px;
   }
 
-  .hero h1 {
-    font-size: 30px;
+  .contact {
+    padding: 15px;
   }
 }
