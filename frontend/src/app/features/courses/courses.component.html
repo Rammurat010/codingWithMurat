@@ -1,1 +1,217 @@
-<p>courses works!</p>
+<div class="courses-container">
+  <!-- Hero Section -->
+  <section class="courses-hero">
+    <div class="courses-hero-content">
+      <h1>📚 Our Courses</h1>
+
+      <p class="hero-subtitle">
+        Choose from a wide range of courses designed to help you master coding
+        and technology
+      </p>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="stat-number">{{ courses.length }}+</span>
+          <span class="stat-label">Courses</span>
+        </div>
+
+        <div class="hero-stat">
+          <span class="stat-number">{{ totalStudents }}+</span>
+          <span class="stat-label">Students</span>
+        </div>
+
+        <div class="hero-stat">
+          <span class="stat-number">{{ totalInstructors }}</span>
+          <span class="stat-label">Expert Instructors</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="filter-section">
+    <div class="filter-container">
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="🔍 Search courses..."
+          [(ngModel)]="searchTerm"
+        />
+      </div>
+
+      <div class="category-filters">
+        @for (category of categories; track category.id) {
+          <button
+            class="category-btn"
+            [class.active]="selectedCategory === category.id"
+            (click)="selectedCategory = category.id"
+          >
+            {{ category.icon }} {{ category.label }}
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Count -->
+  <div class="results-info">
+    <p>Showing {{ filteredCourses.length }} of {{ courses.length }} courses</p>
+  </div>
+
+  <!-- Courses Grid -->
+  <section class="courses-grid">
+    @if (filteredCourses.length === 0) {
+      <div class="no-results">
+        <div class="no-results-icon">🔍</div>
+
+        <h3>No courses found</h3>
+
+        <p>Try adjusting your search or filter criteria</p>
+      </div>
+    } @else {
+      @for (course of filteredCourses; track course.id) {
+        <div class="course-card">
+          <div
+            class="course-image"
+            [style.background-image]="'url(' + course.image + ')'"
+          >
+            <div class="course-icon">{{ course.icon }}</div>
+
+            <div class="course-badge">{{ course.level }}</div>
+          </div>
+
+          <div class="course-content">
+            <div class="course-header">
+              <h3>{{ course.title }}</h3>
+
+              <span class="course-category">
+                {{ course.category }}
+              </span>
+            </div>
+
+            <p class="course-description">
+              {{ course.description }}
+            </p>
+
+            <div class="course-topics">
+              @for (topic of course.topics.slice(0, 3); track topic) {
+                <span class="topic-tag">
+                  {{ topic }}
+                </span>
+              }
+
+              @if (course.topics.length > 3) {
+                <span class="topic-tag more">
+                  +{{ course.topics.length - 3 }}
+                </span>
+              }
+            </div>
+
+            <div class="course-meta">
+              <div class="meta-item">
+                <span>⏱️</span>
+                <span>{{ course.duration }}</span>
+              </div>
+
+              <div class="meta-item">
+                <span>👨‍🎓</span>
+                <span>{{ course.students }} students</span>
+              </div>
+
+              <div class="meta-item">
+                <span>{{ getStars(course.rating) }}</span>
+                <span>{{ course.rating }}</span>
+              </div>
+            </div>
+
+            <div class="course-footer">
+              <div class="course-price">
+                <span class="price">{{ course.price }}</span>
+              </div>
+
+              <div class="course-actions">
+                <button class="enroll-btn" (click)="handleEnroll(course)">
+                  Enroll Now
+                </button>
+
+                <button class="details-btn" (click)="handleEnroll(course)">
+                  ℹ️
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </section>
+
+  <!-- Enrollment Modal -->
+  @if (showEnrollModal && selectedCourse) {
+    <div class="modal-overlay" (click)="closeModal()">
+      <div
+        class="modal-content enroll-modal"
+        (click)="$event.stopPropagation()"
+      >
+        <button class="modal-close" (click)="closeModal()">×</button>
+
+        <div class="enroll-header">
+          <div class="enroll-icon">
+            {{ selectedCourse.icon }}
+          </div>
+
+          <h2>Enroll in Course</h2>
+        </div>
+
+        <div class="enroll-details">
+          <h3>{{ selectedCourse.title }}</h3>
+
+          <p class="enroll-instructor">
+            👨‍🏫 Instructor: {{ selectedCourse.instructor }}
+          </p>
+
+          <div class="enroll-info-grid">
+            <div class="enroll-info-item">
+              <span>📚 Category</span>
+              <span>{{ selectedCourse.category }}</span>
+            </div>
+
+            <div class="enroll-info-item">
+              <span>📊 Level</span>
+              <span>{{ selectedCourse.level }}</span>
+            </div>
+
+            <div class="enroll-info-item">
+              <span>⏱️ Duration</span>
+              <span>{{ selectedCourse.duration }}</span>
+            </div>
+
+            <div class="enroll-info-item">
+              <span>💰 Price</span>
+              <span>{{ selectedCourse.price }}</span>
+            </div>
+          </div>
+
+          <div class="enroll-topics">
+            <h4>📝 What You'll Learn</h4>
+
+            <ul>
+              @for (topic of selectedCourse.topics; track topic) {
+                <li>✅ {{ topic }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+
+        <div class="enroll-actions">
+          <button class="enroll-confirm-btn" (click)="confirmEnroll()">
+            🎓 Enroll Now
+          </button>
+
+          <button class="enroll-cancel-btn" (click)="closeModal()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
