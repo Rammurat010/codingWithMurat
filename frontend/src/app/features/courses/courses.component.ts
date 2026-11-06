@@ -1,21 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-interface Course {
-  id: number;
-  title: string;
-  category: string;
-  level: string;
-  duration: string;
-  price: string;
-  students: number;
-  rating: number;
-  image: string;
-  icon: string;
-  description: string;
-  topics: string[];
-  instructor: string;
-}
+import { Course } from '../../models/course.model';
 
 @Component({
   selector: 'app-courses',
@@ -25,12 +10,15 @@ interface Course {
   styleUrl: './courses.component.css',
 })
 export class CoursesComponent {
+  // Search and Filter
   selectedCategory = 'all';
   searchTerm = '';
 
+  // Enrollment Modal
   showEnrollModal = false;
   selectedCourse: Course | null = null;
 
+  // Course Data
   courses: Course[] = [
     {
       id: 1,
@@ -210,6 +198,7 @@ export class CoursesComponent {
     },
   ];
 
+  // Categories
   categories = [
     { id: 'all', label: 'All Courses', icon: '📚' },
     { id: 'frontend', label: 'Frontend', icon: '🎨' },
@@ -220,16 +209,16 @@ export class CoursesComponent {
 
   // Filter Courses
   get filteredCourses(): Course[] {
+    const search = this.searchTerm.trim().toLowerCase();
+
     return this.courses.filter((course) => {
       const matchesCategory =
         this.selectedCategory === 'all' ||
         course.category === this.selectedCategory;
 
       const matchesSearch =
-        course.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        course.description
-          .toLowerCase()
-          .includes(this.searchTerm.toLowerCase());
+        course.title.toLowerCase().includes(search) ||
+        course.description.toLowerCase().includes(search);
 
       return matchesCategory && matchesSearch;
     });
@@ -245,7 +234,7 @@ export class CoursesComponent {
     return new Set(this.courses.map((course) => course.instructor)).size;
   }
 
-  // Render Stars
+  // Rating Stars
   getStars(rating: number): string {
     return '⭐'.repeat(Math.round(rating));
   }
@@ -262,7 +251,7 @@ export class CoursesComponent {
     this.selectedCourse = null;
   }
 
-  // Enroll Button
+  // Confirm Enrollment
   confirmEnroll(): void {
     if (!this.selectedCourse) return;
 

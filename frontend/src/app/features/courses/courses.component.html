@@ -6,7 +6,7 @@
 
       <p class="hero-subtitle">
         Choose from a wide range of courses designed to help you master coding
-        and technology
+        and technology.
       </p>
 
       <div class="hero-stats">
@@ -28,7 +28,7 @@
     </div>
   </section>
 
-  <!-- Filter Section -->
+  <!-- Search and Filter -->
   <section class="filter-section">
     <div class="filter-container">
       <div class="search-box">
@@ -53,7 +53,7 @@
     </div>
   </section>
 
-  <!-- Results Count -->
+  <!-- Results Information -->
   <div class="results-info">
     <p>Showing {{ filteredCourses.length }} of {{ courses.length }} courses</p>
   </div>
@@ -63,23 +63,22 @@
     @if (filteredCourses.length === 0) {
       <div class="no-results">
         <div class="no-results-icon">🔍</div>
-
         <h3>No courses found</h3>
-
-        <p>Try adjusting your search or filter criteria</p>
+        <p>Try adjusting your search or filter criteria.</p>
       </div>
     } @else {
       @for (course of filteredCourses; track course.id) {
         <div class="course-card">
+          <!-- Course Image -->
           <div
             class="course-image"
             [style.background-image]="'url(' + course.image + ')'"
           >
             <div class="course-icon">{{ course.icon }}</div>
-
             <div class="course-badge">{{ course.level }}</div>
           </div>
 
+          <!-- Course Content -->
           <div class="course-content">
             <div class="course-header">
               <h3>{{ course.title }}</h3>
@@ -93,11 +92,10 @@
               {{ course.description }}
             </p>
 
+            <!-- Topics -->
             <div class="course-topics">
               @for (topic of course.topics.slice(0, 3); track topic) {
-                <span class="topic-tag">
-                  {{ topic }}
-                </span>
+                <span class="topic-tag">{{ topic }}</span>
               }
 
               @if (course.topics.length > 3) {
@@ -107,6 +105,7 @@
               }
             </div>
 
+            <!-- Course Meta -->
             <div class="course-meta">
               <div class="meta-item">
                 <span>⏱️</span>
@@ -124,6 +123,7 @@
               </div>
             </div>
 
+            <!-- Course Footer -->
             <div class="course-footer">
               <div class="course-price">
                 <span class="price">{{ course.price }}</span>
@@ -134,7 +134,11 @@
                   Enroll Now
                 </button>
 
-                <button class="details-btn" (click)="handleEnroll(course)">
+                <button
+                  class="details-btn"
+                  (click)="handleEnroll(course)"
+                  aria-label="View course details"
+                >
                   ℹ️
                 </button>
               </div>
@@ -152,8 +156,15 @@
         class="modal-content enroll-modal"
         (click)="$event.stopPropagation()"
       >
-        <button class="modal-close" (click)="closeModal()">×</button>
+        <button
+          class="modal-close"
+          (click)="closeModal()"
+          aria-label="Close modal"
+        >
+          ×
+        </button>
 
+        <!-- Modal Header -->
         <div class="enroll-header">
           <div class="enroll-icon">
             {{ selectedCourse.icon }}
@@ -162,6 +173,7 @@
           <h2>Enroll in Course</h2>
         </div>
 
+        <!-- Course Details -->
         <div class="enroll-details">
           <h3>{{ selectedCourse.title }}</h3>
 
@@ -169,6 +181,7 @@
             👨‍🏫 Instructor: {{ selectedCourse.instructor }}
           </p>
 
+          <!-- Information Grid -->
           <div class="enroll-info-grid">
             <div class="enroll-info-item">
               <span>📚 Category</span>
@@ -191,6 +204,7 @@
             </div>
           </div>
 
+          <!-- Learning Topics -->
           <div class="enroll-topics">
             <h4>📝 What You'll Learn</h4>
 
@@ -202,6 +216,7 @@
           </div>
         </div>
 
+        <!-- Modal Actions -->
         <div class="enroll-actions">
           <button class="enroll-confirm-btn" (click)="confirmEnroll()">
             🎓 Enroll Now

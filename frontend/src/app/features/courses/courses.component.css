@@ -9,8 +9,8 @@
 
 /* Hero Section */
 .courses-hero {
-  background: linear-gradient(135deg, #101c3a, #174b78, #087e91);
   padding: 75px 20px;
+  background: linear-gradient(135deg, #101c3a, #174b78, #087e91);
   text-align: center;
   color: white;
 }
@@ -21,24 +21,24 @@
 }
 
 .courses-hero h1 {
-  font-size: 42px;
   margin-bottom: 15px;
+  font-size: 42px;
   font-weight: 800;
 }
 
 .hero-subtitle {
-  font-size: 17px;
-  color: #dceeff;
   max-width: 650px;
   margin: 0 auto 35px;
+  color: #dceeff;
+  font-size: 17px;
   line-height: 1.7;
 }
 
 .hero-stats {
   display: flex;
   justify-content: center;
-  gap: 65px;
   flex-wrap: wrap;
+  gap: 65px;
 }
 
 .hero-stat {
@@ -48,14 +48,14 @@
 }
 
 .stat-number {
+  color: #39e0d0;
   font-size: 30px;
   font-weight: 800;
-  color: #39e0d0;
 }
 
 .stat-label {
-  font-size: 14px;
   color: #e0eaf5;
+  font-size: 14px;
 }
 
 /* Filter Section */
@@ -100,8 +100,8 @@
 .category-btn {
   padding: 11px 20px;
   border: 1px solid #dce2eb;
-  background: white;
   border-radius: 25px;
+  background: white;
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
@@ -110,12 +110,12 @@
 
 .category-btn:hover,
 .category-btn.active {
+  border-color: #087e91;
   background: #087e91;
   color: white;
-  border-color: #087e91;
 }
 
-/* Results Info */
+/* Results Information */
 .results-info {
   max-width: 1200px;
   margin: 30px auto 20px;
@@ -126,20 +126,20 @@
 
 /* Courses Grid */
 .courses-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 10px 20px 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px 60px;
 }
 
 /* Course Card */
 .course-card {
-  background: white;
-  border-radius: 14px;
   overflow: hidden;
   border: 1px solid #e9edf3;
+  border-radius: 14px;
+  background: white;
   box-shadow: 0 5px 18px #00000008;
   transition: 0.3s;
 }
@@ -151,15 +151,15 @@
 
 /* Course Image */
 .course-image {
-  height: 190px;
-  background: linear-gradient(135deg, #142d50, #087e91);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  height: 190px;
+  background: linear-gradient(135deg, #142d50, #087e91);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .course-icon {
@@ -172,9 +172,9 @@
   top: 15px;
   right: 15px;
   padding: 7px 13px;
+  border-radius: 20px;
   background: #ffffffed;
   color: #087e91;
-  border-radius: 20px;
   font-size: 12px;
   font-weight: 700;
 }
@@ -186,35 +186,35 @@
 
 .course-header {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 10px;
   margin-bottom: 13px;
 }
 
 .course-header h3 {
-  font-size: 19px;
-  color: #172b4d;
   margin: 0;
+  color: #172b4d;
+  font-size: 19px;
   font-weight: 750;
 }
 
 .course-category {
-  background: #e7f5f6;
-  color: #087e91;
   padding: 5px 9px;
   border-radius: 15px;
+  background: #e7f5f6;
+  color: #087e91;
   font-size: 11px;
   font-weight: 700;
   text-transform: capitalize;
 }
 
 .course-description {
+  min-height: 65px;
+  margin-bottom: 17px;
   color: #687386;
   font-size: 13px;
   line-height: 1.7;
-  min-height: 65px;
-  margin-bottom: 17px;
 }
 
 /* Topics */
@@ -226,10 +226,10 @@
 }
 
 .topic-tag {
-  background: #f0f4f8;
-  color: #46566d;
   padding: 6px 10px;
   border-radius: 5px;
+  background: #f0f4f8;
+  color: #46566d;
   font-size: 11px;
   font-weight: 600;
 }
@@ -254,15 +254,15 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 12px;
   color: #667085;
+  font-size: 12px;
 }
 
 /* Course Footer */
 .course-footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: 10px;
   margin-top: 18px;
 }
@@ -280,8 +280,8 @@
 
 .enroll-btn,
 .details-btn {
-  border: none;
   padding: 10px 14px;
+  border: none;
   border-radius: 7px;
   cursor: pointer;
   font-weight: 700;
@@ -309,13 +309,13 @@
 /* No Results */
 .no-results {
   grid-column: 1 / -1;
-  text-align: center;
   padding: 60px 20px;
+  text-align: center;
 }
 
 .no-results-icon {
-  font-size: 55px;
   margin-bottom: 15px;
+  font-size: 55px;
 }
 
 .no-results h3 {
@@ -331,24 +331,23 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: #0009;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
   z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow-y: auto;
+  padding: 20px;
+  background: #0009;
 }
 
-/* Modal Content */
 .modal-content {
+  position: relative;
   width: 100%;
   max-width: 550px;
-  background: white;
-  border-radius: 15px;
-  padding: 30px;
-  position: relative;
   margin: auto;
+  padding: 30px;
+  border-radius: 15px;
+  background: white;
   animation: modalOpen 0.3s ease;
 }
 
@@ -364,15 +363,16 @@
   }
 }
 
+/* Modal Close */
 .modal-close {
   position: absolute;
   top: 12px;
   right: 18px;
-  background: none;
   border: none;
-  font-size: 30px;
-  cursor: pointer;
+  background: none;
   color: #667085;
+  cursor: pointer;
+  font-size: 30px;
 }
 
 .modal-close:hover {
@@ -381,13 +381,13 @@
 
 /* Enrollment Header */
 .enroll-header {
-  text-align: center;
   margin-bottom: 25px;
+  text-align: center;
 }
 
 .enroll-icon {
-  font-size: 48px;
   margin-bottom: 10px;
+  font-size: 48px;
 }
 
 .enroll-header h2 {
@@ -396,18 +396,18 @@
 }
 
 .enroll-details h3 {
+  margin-bottom: 10px;
   color: #087e91;
   font-size: 21px;
-  margin-bottom: 10px;
 }
 
 .enroll-instructor {
+  margin-bottom: 22px;
   color: #667085;
   font-size: 14px;
-  margin-bottom: 22px;
 }
 
-/* Enrollment Info */
+/* Enrollment Information */
 .enroll-info-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -418,9 +418,9 @@
   display: flex;
   flex-direction: column;
   gap: 7px;
-  background: #f4f7fa;
   padding: 13px;
   border-radius: 8px;
+  background: #f4f7fa;
   font-size: 13px;
 }
 
@@ -439,20 +439,20 @@
 }
 
 .enroll-topics h4 {
-  color: #172b4d;
   margin-bottom: 12px;
+  color: #172b4d;
 }
 
 .enroll-topics ul {
-  list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .enroll-topics li {
   padding: 7px 0;
-  font-size: 14px;
   color: #46566d;
+  font-size: 14px;
 }
 
 /* Enrollment Actions */
@@ -468,9 +468,9 @@
   padding: 13px;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
   font-size: 14px;
   font-weight: 700;
-  cursor: pointer;
   transition: 0.3s;
 }
 
