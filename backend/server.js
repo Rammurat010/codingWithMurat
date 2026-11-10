@@ -6,6 +6,7 @@ const { connectDB } = require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
 const contactRoutes = require("./routes/contactRoutes");
+const admissionRoutes = require("./routes/admissionRoutes");
 
 const app = express();
 
@@ -25,6 +26,9 @@ app.use("/api/auth", authRoutes);
 
 // Contact API
 app.use("/api/contact", contactRoutes);
+
+// Admission API
+app.use("/api/admissions", admissionRoutes);
 
 // Unknown routes
 app.use((req, res) => {

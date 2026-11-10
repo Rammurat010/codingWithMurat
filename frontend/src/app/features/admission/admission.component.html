@@ -1,1 +1,234 @@
-<p>admission works!</p>
+<div class="admission-page">
+  <div class="admission-header">
+    <div>
+      <h1>Student Admission</h1>
+      <p>Complete the form below to apply for admission.</p>
+    </div>
+    <span class="admission-badge">2026-27 Admissions</span>
+  </div>
+
+  <form #admissionForm="ngForm" (ngSubmit)="submitAdmission()">
+    <!-- Personal Details -->
+    <section class="form-section">
+      <h2>01. Personal Information</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>First Name *</label>
+          <input
+            type="text"
+            name="firstName"
+            [(ngModel)]="admission.firstName"
+            required
+            placeholder="Enter first name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Last Name *</label>
+          <input
+            type="text"
+            name="lastName"
+            [(ngModel)]="admission.lastName"
+            required
+            placeholder="Enter last name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="admission.email"
+            required
+            email
+            placeholder="example@gmail.com"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Mobile Number *</label>
+          <input
+            type="tel"
+            name="phone"
+            [(ngModel)]="admission.phone"
+            required
+            pattern="[0-9]{10}"
+            maxlength="10"
+            placeholder="10 digit mobile number"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Date of Birth *</label>
+          <input type="date" name="dob" [(ngModel)]="admission.dob" required />
+        </div>
+
+        <div class="form-group">
+          <label>Gender *</label>
+          <select name="gender" [(ngModel)]="admission.gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parent Details -->
+    <section class="form-section">
+      <h2>02. Parent / Guardian Information</h2>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Father's Name *</label>
+          <input
+            type="text"
+            name="fatherName"
+            [(ngModel)]="admission.fatherName"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Mother's Name *</label>
+          <input
+            type="text"
+            name="motherName"
+            [(ngModel)]="admission.motherName"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Guardian Mobile Number</label>
+          <input
+            type="tel"
+            name="guardianPhone"
+            [(ngModel)]="admission.guardianPhone"
+            pattern="[0-9]{10}"
+            maxlength="10"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Course Details -->
+    <section class="form-section">
+      <h2>03. Course Information</h2>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Select Course *</label>
+          <select name="course" [(ngModel)]="admission.course" required>
+            <option value="">Choose Course</option>
+            @for (course of courses; track course) {
+              <option [value]="course">{{ course }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Previous Qualification *</label>
+          <input
+            type="text"
+            name="qualification"
+            [(ngModel)]="admission.qualification"
+            required
+            placeholder="e.g. 12th / Graduation"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Previous Percentage *</label>
+          <input
+            type="number"
+            name="percentage"
+            [(ngModel)]="admission.percentage"
+            min="0"
+            max="100"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Passing Year *</label>
+          <input
+            type="number"
+            name="passingYear"
+            [(ngModel)]="admission.passingYear"
+            min="1990"
+            max="2026"
+            required
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Address -->
+    <section class="form-section">
+      <h2>04. Address Information</h2>
+
+      <div class="form-grid">
+        <div class="form-group full-width">
+          <label>Full Address *</label>
+          <textarea
+            name="address"
+            [(ngModel)]="admission.address"
+            required
+            rows="3"
+            placeholder="Enter your full address"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>City *</label>
+          <input
+            type="text"
+            name="city"
+            [(ngModel)]="admission.city"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>State *</label>
+          <input
+            type="text"
+            name="state"
+            [(ngModel)]="admission.state"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>PIN Code *</label>
+          <input
+            type="text"
+            name="pincode"
+            [(ngModel)]="admission.pincode"
+            pattern="[0-9]{6}"
+            maxlength="6"
+            required
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Buttons -->
+    <div class="form-actions">
+      <button type="button" class="reset-btn" (click)="resetForm()">
+        Reset
+      </button>
+
+      <button
+        type="submit"
+        class="submit-btn"
+        [disabled]="admissionForm.invalid"
+      >
+        Submit Application →
+      </button>
+    </div>
+  </form>
+</div>
