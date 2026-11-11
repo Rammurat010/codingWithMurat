@@ -1,234 +1,173 @@
-<div class="admission-page">
-  <div class="admission-header">
-    <div>
-      <h1>Student Admission</h1>
-      <p>Complete the form below to apply for admission.</p>
+<div class="container">
+  <h2>Student Admission Form</h2>
+  <p>Fill in your details below.</p>
+
+  @if (successMessage) {
+    <p class="success">{{ successMessage }}</p>
+  }
+
+  @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+  }
+
+  <form #form="ngForm" (ngSubmit)="submitAdmission()">
+    <h3>Personal Details</h3>
+
+    <div class="grid">
+      <input
+        type="text"
+        name="firstName"
+        placeholder="First Name"
+        [(ngModel)]="admission.firstName"
+        required
+      />
+
+      <input
+        type="text"
+        name="lastName"
+        placeholder="Last Name"
+        [(ngModel)]="admission.lastName"
+        required
+      />
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        [(ngModel)]="admission.email"
+        required
+      />
+
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone Number"
+        [(ngModel)]="admission.phone"
+        pattern="[0-9]{10}"
+        maxlength="10"
+        required
+      />
+
+      <input type="date" name="dob" [(ngModel)]="admission.dob" required />
+
+      <select name="gender" [(ngModel)]="admission.gender" required>
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+        <option>Other</option>
+      </select>
     </div>
-    <span class="admission-badge">2026-27 Admissions</span>
-  </div>
 
-  <form #admissionForm="ngForm" (ngSubmit)="submitAdmission()">
-    <!-- Personal Details -->
-    <section class="form-section">
-      <h2>01. Personal Information</h2>
-      <div class="form-grid">
-        <div class="form-group">
-          <label>First Name *</label>
-          <input
-            type="text"
-            name="firstName"
-            [(ngModel)]="admission.firstName"
-            required
-            placeholder="Enter first name"
-          />
-        </div>
+    <h3>Parent Details</h3>
 
-        <div class="form-group">
-          <label>Last Name *</label>
-          <input
-            type="text"
-            name="lastName"
-            [(ngModel)]="admission.lastName"
-            required
-            placeholder="Enter last name"
-          />
-        </div>
+    <div class="grid">
+      <input
+        type="text"
+        name="fatherName"
+        placeholder="Father Name"
+        [(ngModel)]="admission.fatherName"
+        required
+      />
 
-        <div class="form-group">
-          <label>Email Address *</label>
-          <input
-            type="email"
-            name="email"
-            [(ngModel)]="admission.email"
-            required
-            email
-            placeholder="example@gmail.com"
-          />
-        </div>
+      <input
+        type="text"
+        name="motherName"
+        placeholder="Mother Name"
+        [(ngModel)]="admission.motherName"
+        required
+      />
 
-        <div class="form-group">
-          <label>Mobile Number *</label>
-          <input
-            type="tel"
-            name="phone"
-            [(ngModel)]="admission.phone"
-            required
-            pattern="[0-9]{10}"
-            maxlength="10"
-            placeholder="10 digit mobile number"
-          />
-        </div>
+      <input
+        type="tel"
+        name="guardianPhone"
+        placeholder="Guardian Phone"
+        [(ngModel)]="admission.guardianPhone"
+        pattern="[0-9]{10}"
+        maxlength="10"
+      />
+    </div>
 
-        <div class="form-group">
-          <label>Date of Birth *</label>
-          <input type="date" name="dob" [(ngModel)]="admission.dob" required />
-        </div>
+    <h3>Course Details</h3>
 
-        <div class="form-group">
-          <label>Gender *</label>
-          <select name="gender" [(ngModel)]="admission.gender" required>
-            <option value="">Select Gender</option>
-            <option>Male</option>
-            <option>Female</option>
-            <option>Other</option>
-          </select>
-        </div>
-      </div>
-    </section>
+    <div class="grid">
+      <select name="course" [(ngModel)]="admission.course" required>
+        <option value="">Select Course</option>
+        @for (course of courses; track course) {
+          <option [value]="course">{{ course }}</option>
+        }
+      </select>
 
-    <!-- Parent Details -->
-    <section class="form-section">
-      <h2>02. Parent / Guardian Information</h2>
+      <input
+        type="text"
+        name="qualification"
+        placeholder="Qualification"
+        [(ngModel)]="admission.qualification"
+        required
+      />
 
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Father's Name *</label>
-          <input
-            type="text"
-            name="fatherName"
-            [(ngModel)]="admission.fatherName"
-            required
-          />
-        </div>
+      <input
+        type="number"
+        name="percentage"
+        placeholder="Percentage"
+        [(ngModel)]="admission.percentage"
+        min="0"
+        max="100"
+        required
+      />
 
-        <div class="form-group">
-          <label>Mother's Name *</label>
-          <input
-            type="text"
-            name="motherName"
-            [(ngModel)]="admission.motherName"
-            required
-          />
-        </div>
+      <input
+        type="number"
+        name="passingYear"
+        placeholder="Passing Year"
+        [(ngModel)]="admission.passingYear"
+        min="1990"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-          <label>Guardian Mobile Number</label>
-          <input
-            type="tel"
-            name="guardianPhone"
-            [(ngModel)]="admission.guardianPhone"
-            pattern="[0-9]{10}"
-            maxlength="10"
-          />
-        </div>
-      </div>
-    </section>
+    <h3>Address Details</h3>
 
-    <!-- Course Details -->
-    <section class="form-section">
-      <h2>03. Course Information</h2>
+    <div class="grid">
+      <textarea
+        name="address"
+        placeholder="Full Address"
+        [(ngModel)]="admission.address"
+        required
+      ></textarea>
 
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Select Course *</label>
-          <select name="course" [(ngModel)]="admission.course" required>
-            <option value="">Choose Course</option>
-            @for (course of courses; track course) {
-              <option [value]="course">{{ course }}</option>
-            }
-          </select>
-        </div>
+      <input
+        type="text"
+        name="city"
+        placeholder="City"
+        [(ngModel)]="admission.city"
+        required
+      />
 
-        <div class="form-group">
-          <label>Previous Qualification *</label>
-          <input
-            type="text"
-            name="qualification"
-            [(ngModel)]="admission.qualification"
-            required
-            placeholder="e.g. 12th / Graduation"
-          />
-        </div>
+      <input
+        type="text"
+        name="state"
+        placeholder="State"
+        [(ngModel)]="admission.state"
+        required
+      />
 
-        <div class="form-group">
-          <label>Previous Percentage *</label>
-          <input
-            type="number"
-            name="percentage"
-            [(ngModel)]="admission.percentage"
-            min="0"
-            max="100"
-            required
-          />
-        </div>
+      <input
+        type="text"
+        name="pincode"
+        placeholder="Pincode"
+        [(ngModel)]="admission.pincode"
+        pattern="[0-9]{6}"
+        maxlength="6"
+        required
+      />
+    </div>
 
-        <div class="form-group">
-          <label>Passing Year *</label>
-          <input
-            type="number"
-            name="passingYear"
-            [(ngModel)]="admission.passingYear"
-            min="1990"
-            max="2026"
-            required
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- Address -->
-    <section class="form-section">
-      <h2>04. Address Information</h2>
-
-      <div class="form-grid">
-        <div class="form-group full-width">
-          <label>Full Address *</label>
-          <textarea
-            name="address"
-            [(ngModel)]="admission.address"
-            required
-            rows="3"
-            placeholder="Enter your full address"
-          ></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>City *</label>
-          <input
-            type="text"
-            name="city"
-            [(ngModel)]="admission.city"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label>State *</label>
-          <input
-            type="text"
-            name="state"
-            [(ngModel)]="admission.state"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label>PIN Code *</label>
-          <input
-            type="text"
-            name="pincode"
-            [(ngModel)]="admission.pincode"
-            pattern="[0-9]{6}"
-            maxlength="6"
-            required
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- Buttons -->
-    <div class="form-actions">
-      <button type="button" class="reset-btn" (click)="resetForm()">
-        Reset
+    <div class="actions">
+      <button type="submit" [disabled]="form.invalid || loading">
+        {{ loading ? "Submitting..." : "Submit Admission" }}
       </button>
 
-      <button
-        type="submit"
-        class="submit-btn"
-        [disabled]="admissionForm.invalid"
-      >
-        Submit Application →
-      </button>
+      <button type="button" class="reset" (click)="resetForm()">Reset</button>
     </div>
   </form>
 </div>
